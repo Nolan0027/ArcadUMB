@@ -399,9 +399,10 @@ function Mainmenu () {
         UIFrame.scale = 0
     }
     Main_menu = miniMenu.createMenu(
-    miniMenu.createMenuItem("Play", assets.image`PlayIcon`),
+    miniMenu.createMenuItem("Singleplayer", assets.image`PlayIcon`),
+    miniMenu.createMenuItem("Multiplayer", assets.image`MultiplayIcon`),
     miniMenu.createMenuItem("Options", assets.image`OptionsIcon`),
-    miniMenu.createMenuItem("Help", assets.image`Questionicon`)
+    miniMenu.createMenuItem("Information", assets.image`Questionicon`)
     )
     Main_menu.setDimensions(100, 110)
     Main_menu.setTitle("Main menu")
@@ -468,7 +469,7 @@ function Mainmenu () {
             } else {
                 info.setLife(999999)
             }
-        } else if (selectedIndex == 1) {
+        } else if (selectedIndex == 2) {
             Main_menu.close()
             Options = miniMenu.createMenu(
             miniMenu.createMenuItem("Back", assets.image`BackIcon`),
@@ -496,7 +497,7 @@ function Mainmenu () {
                 }
             })
             scene.centerCameraAt(95, 60)
-        } else if (selectedIndex == 2) {
+        } else if (selectedIndex == 3) {
             Main_menu.close()
             HelpMenuFunc()
         }
