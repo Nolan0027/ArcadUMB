@@ -1,5 +1,6 @@
 Link: (https://makecode.com/_bP769KgF74i9)
 - GitHub link: (https://nolan0027.github.io/ArcadUMB/)
+- Alternative link: (https://arcade.makecode.com/S53031-32861-63051-50401)
 - Version: 1.2
 - Size: 850Kb
 - December 16, 2024
