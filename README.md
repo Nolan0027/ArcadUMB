@@ -8,6 +8,29 @@ Archives
 - [740Kb] 1.0 Link: (https://makecode.com/_0c78qig8ThEJ)
 - [528Kb] PreRelease Link: (https://arcade.makecode.com/S66410-10285-76107-43112)
 
+Changelogs
+
+1.0
+- Fixed all known bugs from PreRelease
+- Added chests
+- buckets and a pause menu
+- Revamped UI
+- Made world not limited to camera
+- Better Grass and Water textures
+- adjusted Player hitbox
+- added score and health
+- fixed issue with controls codes
+
+1.1
+- Fixed UI bugs
+- added main menu
+- revamped pause menu
+- changed keybinds with inventory scrolling and pausing
+- changed water texture
+- displays items name that's picked up
+- and added creative mode.
+Etc.
+
 Controls
 - Left/right/down/up: Direction keys
 - Build: B
