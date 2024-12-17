@@ -31,6 +31,20 @@ Changelogs
 - and added creative mode.
 Etc.
 
+1.2.1
+- Crafting
+- Pickaxes
+- TNT
+- Fix Selector button
+- Help button
+- Changelogs in game too
+- Commands
+- Placing buckets
+- Selector shows selected item's nameRevamped controls
+- Changed some icons
+- You can't break a block if your inventory is full now
+- Revamped water texture again
+
 Controls
 - Left/right/down/up: Direction keys
 - Build: B
@@ -55,6 +69,8 @@ Plans
 - [0/1]Add a mob
 - [0/1]Add day/night cycle
 - [0/1]Add food
+
+There's no 1.2 cuz javadickt broke all of my code for like a week and I had to do sum stuff to the projects file itself, so now it's 1.2.1
 
 **This image shows the blocks code from the last commit in master.**
 (This image may take a few minutes to refresh.)
