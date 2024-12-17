@@ -1,27 +1,25 @@
 namespace SpriteKind {
     export const Inventory = SpriteKind.create()
 }
-/**
- * 1: Rock
- * 
- * 2: Empty bucket
- * 
- * 3: Full bucket
- * 
- * 4: Stone
- * 
- * 5: Diamond
- * 
- * 6: TNT
- * 
- * 7: Wooden pick
- * 
- * 8: Stone pick
- * 
- * 9: Wood
- * 
- * 10: Meat
- */
+// 1: Rock
+// 
+// 2: Empty bucket
+// 
+// 3: Full bucket
+// 
+// 4: Stone
+// 
+// 5: Diamond
+// 
+// 6: TNT
+// 
+// 7: Wooden pick
+// 
+// 8: Stone pick
+// 
+// 9: Wood
+// 
+// 10: Meat
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(controller.A.isPressed())) {
         if (A == 0 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr.tilemapLocation().column, Plr.tilemapLocation().row - 1)))) {
@@ -143,74 +141,6 @@ function HelpMenuFunc () {
     })
     scene.centerCameraAt(95, 60)
 }
-controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (A == 0) {
-        if (B == -1) {
-            Craftmenu()
-            A = 1
-        } else {
-            A = 1
-            PauseMenu = miniMenu.createMenu(
-            miniMenu.createMenuItem("Resume", assets.image`PlayIcon`),
-            miniMenu.createMenuItem("Chat", assets.image`ChatIcon`),
-            miniMenu.createMenuItem("Main menu", assets.image`BackIcon`),
-            miniMenu.createMenuItem("Reset", assets.image`ResetIcon`),
-            miniMenu.createMenuItem("Fix selector", assets.image`FixSelIcon`)
-            )
-            PauseMenu.setPosition(Plr.x - 8, Plr.y)
-            PauseMenu.setDimensions(100, 110)
-            PauseMenu.setTitle("Paused")
-            PauseMenu.onButtonPressed(controller.A, function (selection, selectedIndex) {
-                if (selectedIndex == 0) {
-                    PauseMenu.close()
-                    scene.setBackgroundColor(9)
-                    A = 0
-                    scene.cameraFollowSprite(Plr)
-                } else if (selectedIndex == 1) {
-                    A = 0
-                    PauseMenu.close()
-                    scene.cameraFollowSprite(Plr)
-                    Message = game.askForString("/Chat/", 24)
-                    if (Message == "/help" || Message == "/commands" || Message == "/cmds") {
-                        Message = game.askForString("Commands: /give || /g [Rock,Stone,TNT,etc]", 24)
-                    } else if (Message == "/give rock" || Message == "/g rock") {
-                        AddInv(1)
-                    } else if (Message == "/give empty bucket" || Message == "/g empty bucket") {
-                        AddInv(2)
-                    } else if (Message == "/give bucket" || Message == "/g bucket") {
-                        AddInv(3)
-                    } else if (Message == "/give stone" || Message == "/g stone") {
-                        AddInv(4)
-                    } else if (Message == "/give diamond" || Message == "/g diamond") {
-                        AddInv(5)
-                    } else if (Message == "/give tnt" || Message == "/g tnt") {
-                        AddInv(6)
-                    } else if (Message == "/give Wooden pickaxe" || Message == "/g wooden pickaxe") {
-                        AddInv(7)
-                    } else if (Message == "/give Stone pickaxe" || Message == "/g stone pickaxe") {
-                        AddInv(8)
-                    } else if (Message == "/give Wood" || Message == "/g stone wood") {
-                        AddInv(9)
-                    } else if (Message == "/give meat" || Message == "/g meat") {
-                        AddInv(10)
-                    }
-                    RenderInv()
-                    Plr.sayText(Message, 2000, false)
-                } else if (selectedIndex == 2) {
-                    PauseMenu.close()
-                    Mainmenu()
-                } else if (selectedIndex == 3) {
-                    game.reset()
-                } else if (selectedIndex == 4) {
-                    B = 0
-                    A = 0
-                    Selector.y = Inv1.y
-                    PauseMenu.close()
-                }
-            })
-        }
-    }
-})
 function RenderInv () {
     if (Inv[0] == 0) {
         Inv1.setImage(assets.image`InvNone`)
@@ -426,6 +356,74 @@ function Mainmenu () {
         }
     })
 }
+controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (A == 0) {
+        if (B == -1) {
+            Craftmenu()
+            A = 1
+        } else {
+            A = 1
+            PauseMenu = miniMenu.createMenu(
+            miniMenu.createMenuItem("Resume", assets.image`PlayIcon`),
+            miniMenu.createMenuItem("Chat", assets.image`ChatIcon`),
+            miniMenu.createMenuItem("Main menu", assets.image`BackIcon`),
+            miniMenu.createMenuItem("Reset", assets.image`ResetIcon`),
+            miniMenu.createMenuItem("Fix selector", assets.image`FixSelIcon`)
+            )
+            PauseMenu.setPosition(Plr.x - 8, Plr.y)
+            PauseMenu.setDimensions(100, 110)
+            PauseMenu.setTitle("Paused")
+            PauseMenu.onButtonPressed(controller.A, function (selection, selectedIndex) {
+                if (selectedIndex == 0) {
+                    PauseMenu.close()
+                    scene.setBackgroundColor(9)
+                    A = 0
+                    scene.cameraFollowSprite(Plr)
+                } else if (selectedIndex == 1) {
+                    A = 0
+                    PauseMenu.close()
+                    scene.cameraFollowSprite(Plr)
+                    Message = game.askForString("/Chat/ use !help for commands.", 24)
+                    if (Message == "!help" || Message == "!commands" || Message == "!cmds") {
+                        Message = game.askForString("Commands: !give || !g [Rock,Stone,TNT,etc]", 24)
+                    } else if (Message == "!give rock" || Message == "!g rock") {
+                        AddInv(1)
+                    } else if (Message == "!give empty bucket" || Message == "!g empty bucket") {
+                        AddInv(2)
+                    } else if (Message == "!give bucket" || Message == "!g bucket") {
+                        AddInv(3)
+                    } else if (Message == "!give stone" || Message == "!g stone") {
+                        AddInv(4)
+                    } else if (Message == "!give diamond" || Message == "!g diamond") {
+                        AddInv(5)
+                    } else if (Message == "!give tnt" || Message == "!g tnt" || Message == "!g TNT") {
+                        AddInv(6)
+                    } else if (Message == "!give Wooden pickaxe" || Message == "!g wooden pickaxe") {
+                        AddInv(7)
+                    } else if (Message == "!give Stone pickaxe" || Message == "!g stone pickaxe") {
+                        AddInv(8)
+                    } else if (Message == "!give Wood" || Message == "!g stone wood") {
+                        AddInv(9)
+                    } else if (Message == "!give meat" || Message == "!g meat") {
+                        AddInv(10)
+                    }
+                    RenderInv()
+                    Plr.sayText(Message, 2000, false)
+                } else if (selectedIndex == 2) {
+                    PauseMenu.close()
+                    Mainmenu()
+                } else if (selectedIndex == 3) {
+                    game.reset()
+                } else if (selectedIndex == 4) {
+                    B = 0
+                    A = 0
+                    Selector.y = Inv1.y
+                    PauseMenu.close()
+                }
+            })
+        }
+    }
+})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (A == 0 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row)))) {
         if (Inv[B] == 2 || Inv[B] == 3) {
@@ -645,11 +643,11 @@ function Craftmenu () {
     })
 }
 let Craft_menu: miniMenu.MenuSprite = null
+let Message = ""
+let PauseMenu: miniMenu.MenuSprite = null
 let Options: miniMenu.MenuSprite = null
 let Gamemode = 0
 let Main_menu: miniMenu.MenuSprite = null
-let Message = ""
-let PauseMenu: miniMenu.MenuSprite = null
 let Changelogs: miniMenu.MenuSprite = null
 let GamemodesHelp: miniMenu.MenuSprite = null
 let HelpMenu: miniMenu.MenuSprite = null
