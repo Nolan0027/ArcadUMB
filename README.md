@@ -1,5 +1,6 @@
 Link: (https://makecode.com/_bP769KgF74i9)
-- Version: 1.2.1
+- GitHub link: (https://nolan0027.github.io/ArcadUMB/)
+- Version: 1.2
 - Size: 850Kb
 - December 16, 2024
 
@@ -31,7 +32,7 @@ Changelogs
 - and added creative mode.
 Etc.
 
-1.2.1
+1.2
 - Crafting
 - Pickaxes
 - TNT
@@ -64,13 +65,11 @@ Known bugs
 Plans
 - [0/1]Fix UI bugging out when mainmenu²
 - [0/1]Multiplayer
-- [1/3]Add 2 ores and stone (Added stone<>1.2.1)
-- [1/1]Add Crafting (Added<>1.2.1)
+- [1/3]Add 2 ores and stone (Added stone<>1.2)
+- [1/1]Add Crafting (Added<>1.2)
 - [0/1]Add a mob
 - [0/1]Add day/night cycle
 - [0/1]Add food
-
-There's no 1.2 cuz javadickt broke all of my code for like a week and I had to do sum stuff to the projects file itself, so now it's 1.2.1
 
 **This image shows the blocks code from the last commit in master.**
 (This image may take a few minutes to refresh.)
