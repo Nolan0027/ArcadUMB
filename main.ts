@@ -1,6 +1,84 @@
 namespace SpriteKind {
     export const Inventory = SpriteKind.create()
 }
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (A == 0) {
+        if (!(Inv.indexOf(0) == -1)) {
+            if (Inv[B] == 3 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr.tilemapLocation().column, Plr.tilemapLocation().row + 1)))) {
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Water`)
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), true)
+                Inv[B] = 2
+                RenderInv()
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Water`) && B == Inv.indexOf(2)) {
+                Inv[0] = 3
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Mud`)
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
+                RenderInv()
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Stone`)) {
+                if (Inv[B] - 1 == 7 || Inv[B] == 8) {
+                    tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
+                    tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
+                    info.changeScoreBy(1)
+                    AddInv(4)
+                } else {
+                    tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`StoneBreak`)
+                }
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`StoneBreak`)) {
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
+                info.changeScoreBy(1)
+                AddInv(4)
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Diamond`)) {
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
+                info.changeScoreBy(30)
+                AddInv(5)
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`TNT`)) {
+                AddInv(6)
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 2, Plr.tilemapLocation().row), assets.tile`Grass`)
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 2, Plr.tilemapLocation().row), false)
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row + 1), assets.tile`Grass`)
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row + 1), false)
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row - 1), assets.tile`Grass`)
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row - 1), false)
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Rock`)) {
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Rockbreak`)
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Rockbreak`)) {
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
+                info.changeScoreBy(1)
+                AddInv(1)
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Tree`)) {
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`TreeBreak`)
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`TreeBreak`)) {
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
+                info.changeScoreBy(1)
+                AddInv(9)
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Chest`)) {
+                if (randint(1, 2) == 1) {
+                    AddInv(1)
+                } else {
+                    AddInv(2)
+                }
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`BucketTile`)) {
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
+                AddInv(2)
+            } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Treetile`)) {
+                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
+                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
+                AddInv(9)
+            }
+        } else {
+            Plr.sayText("Inventory full.", 1000, false)
+        }
+    }
+})
 // 1: Rock
 // 
 // 2: Empty bucket
@@ -41,7 +119,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
             if (Inv[B] == 1) {
                 Selector.sayText("Rock", 500, false)
             } else if (Inv[B] == 2) {
-                Selector.sayText("Em. bucket", 500, false)
+                Selector.sayText("Bucket", 500, false)
             } else if (Inv[B] == 3) {
                 Selector.sayText("Bucket", 500, false)
             } else if (Inv[B] == 4) {
@@ -141,6 +219,74 @@ function HelpMenuFunc () {
     })
     scene.centerCameraAt(95, 60)
 }
+controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (A == 0) {
+        if (B == -1) {
+            Craftmenu()
+            A = 1
+        } else {
+            A = 1
+            PauseMenu = miniMenu.createMenu(
+            miniMenu.createMenuItem("Resume", assets.image`PlayIcon`),
+            miniMenu.createMenuItem("Chat", assets.image`ChatIcon`),
+            miniMenu.createMenuItem("Main menu", assets.image`BackIcon`),
+            miniMenu.createMenuItem("Reset", assets.image`ResetIcon`),
+            miniMenu.createMenuItem("Fix selector", assets.image`FixSelIcon`)
+            )
+            PauseMenu.setPosition(Plr.x - 8, Plr.y)
+            PauseMenu.setDimensions(100, 110)
+            PauseMenu.setTitle("Paused")
+            PauseMenu.onButtonPressed(controller.A, function (selection, selectedIndex) {
+                if (selectedIndex == 0) {
+                    PauseMenu.close()
+                    scene.setBackgroundColor(9)
+                    A = 0
+                    scene.cameraFollowSprite(Plr)
+                } else if (selectedIndex == 1) {
+                    A = 0
+                    PauseMenu.close()
+                    scene.cameraFollowSprite(Plr)
+                    Message = game.askForString("/Chat/ use !help for commands.", 24)
+                    if (Message == "!help" || Message == "!commands" || Message == "!cmds") {
+                        Message = game.askForString("Commands: !give || !g [Rock,Stone,TNT,etc]", 24)
+                    } else if (Message == "!give rock" || Message == "!g rock") {
+                        AddInv(1)
+                    } else if (Message == "!give empty bucket" || Message == "!g empty bucket") {
+                        AddInv(2)
+                    } else if (Message == "!give bucket" || Message == "!g bucket") {
+                        AddInv(3)
+                    } else if (Message == "!give stone" || Message == "!g stone") {
+                        AddInv(4)
+                    } else if (Message == "!give diamond" || Message == "!g diamond") {
+                        AddInv(5)
+                    } else if (Message == "!give tnt" || Message == "!g tnt" || Message == "!g TNT") {
+                        AddInv(6)
+                    } else if (Message == "!give Wooden pickaxe" || Message == "!g wooden pickaxe") {
+                        AddInv(7)
+                    } else if (Message == "!give Stone pickaxe" || Message == "!g stone pickaxe") {
+                        AddInv(8)
+                    } else if (Message == "!give Wood" || Message == "!g stone wood") {
+                        AddInv(9)
+                    } else if (Message == "!give meat" || Message == "!g meat") {
+                        AddInv(10)
+                    }
+                    RenderInv()
+                    Plr.sayText(Message, 2000, false)
+                } else if (selectedIndex == 2) {
+                    PauseMenu.close()
+                    Mainmenu()
+                } else if (selectedIndex == 3) {
+                    game.reset()
+                } else if (selectedIndex == 4) {
+                    B = 0
+                    A = 0
+                    Selector.y = Inv1.y
+                    PauseMenu.close()
+                }
+            })
+        }
+    }
+})
 function RenderInv () {
     if (Inv[0] == 0) {
         Inv1.setImage(assets.image`InvNone`)
@@ -356,74 +502,6 @@ function Mainmenu () {
         }
     })
 }
-controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (A == 0) {
-        if (B == -1) {
-            Craftmenu()
-            A = 1
-        } else {
-            A = 1
-            PauseMenu = miniMenu.createMenu(
-            miniMenu.createMenuItem("Resume", assets.image`PlayIcon`),
-            miniMenu.createMenuItem("Chat", assets.image`ChatIcon`),
-            miniMenu.createMenuItem("Main menu", assets.image`BackIcon`),
-            miniMenu.createMenuItem("Reset", assets.image`ResetIcon`),
-            miniMenu.createMenuItem("Fix selector", assets.image`FixSelIcon`)
-            )
-            PauseMenu.setPosition(Plr.x - 8, Plr.y)
-            PauseMenu.setDimensions(100, 110)
-            PauseMenu.setTitle("Paused")
-            PauseMenu.onButtonPressed(controller.A, function (selection, selectedIndex) {
-                if (selectedIndex == 0) {
-                    PauseMenu.close()
-                    scene.setBackgroundColor(9)
-                    A = 0
-                    scene.cameraFollowSprite(Plr)
-                } else if (selectedIndex == 1) {
-                    A = 0
-                    PauseMenu.close()
-                    scene.cameraFollowSprite(Plr)
-                    Message = game.askForString("/Chat/ use !help for commands.", 24)
-                    if (Message == "!help" || Message == "!commands" || Message == "!cmds") {
-                        Message = game.askForString("Commands: !give || !g [Rock,Stone,TNT,etc]", 24)
-                    } else if (Message == "!give rock" || Message == "!g rock") {
-                        AddInv(1)
-                    } else if (Message == "!give empty bucket" || Message == "!g empty bucket") {
-                        AddInv(2)
-                    } else if (Message == "!give bucket" || Message == "!g bucket") {
-                        AddInv(3)
-                    } else if (Message == "!give stone" || Message == "!g stone") {
-                        AddInv(4)
-                    } else if (Message == "!give diamond" || Message == "!g diamond") {
-                        AddInv(5)
-                    } else if (Message == "!give tnt" || Message == "!g tnt" || Message == "!g TNT") {
-                        AddInv(6)
-                    } else if (Message == "!give Wooden pickaxe" || Message == "!g wooden pickaxe") {
-                        AddInv(7)
-                    } else if (Message == "!give Stone pickaxe" || Message == "!g stone pickaxe") {
-                        AddInv(8)
-                    } else if (Message == "!give Wood" || Message == "!g stone wood") {
-                        AddInv(9)
-                    } else if (Message == "!give meat" || Message == "!g meat") {
-                        AddInv(10)
-                    }
-                    RenderInv()
-                    Plr.sayText(Message, 2000, false)
-                } else if (selectedIndex == 2) {
-                    PauseMenu.close()
-                    Mainmenu()
-                } else if (selectedIndex == 3) {
-                    game.reset()
-                } else if (selectedIndex == 4) {
-                    B = 0
-                    A = 0
-                    Selector.y = Inv1.y
-                    PauseMenu.close()
-                }
-            })
-        }
-    }
-})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     if (A == 0 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row)))) {
         if (Inv[B] == 2 || Inv[B] == 3) {
@@ -504,7 +582,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
             if (Inv[B] == 1) {
                 Selector.sayText("Rock", 500, false)
             } else if (Inv[B] == 2) {
-                Selector.sayText("Em. bucket", 500, false)
+                Selector.sayText("Bucket", 500, false)
             } else if (Inv[B] == 3) {
                 Selector.sayText("Bucket", 500, false)
             } else if (Inv[B] == 4) {
@@ -526,82 +604,6 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
             B = -1
             Selector.y += -43.41
         }
-    }
-})
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (A == 0 && !(Inv.indexOf(0) == -1)) {
-        if (Inv[B] == 3 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr.tilemapLocation().column, Plr.tilemapLocation().row + 1)))) {
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Water`)
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), true)
-            Inv[B] = 2
-            RenderInv()
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Water`) && B == Inv.indexOf(2)) {
-            Inv[0] = 3
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Mud`)
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
-            RenderInv()
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Stone`)) {
-            if (Inv[B] - 1 == 7 || Inv[B] == 8) {
-                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
-                tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
-                info.changeScoreBy(1)
-                AddInv(4)
-            } else {
-                tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`StoneBreak`)
-            }
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`StoneBreak`)) {
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
-            info.changeScoreBy(1)
-            AddInv(4)
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Diamond`)) {
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
-            info.changeScoreBy(30)
-            AddInv(5)
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`TNT`)) {
-            AddInv(6)
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 2, Plr.tilemapLocation().row), assets.tile`Grass`)
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 2, Plr.tilemapLocation().row), false)
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row + 1), assets.tile`Grass`)
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row + 1), false)
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row - 1), assets.tile`Grass`)
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row - 1), false)
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Rock`)) {
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Rockbreak`)
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Rockbreak`)) {
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
-            info.changeScoreBy(1)
-            AddInv(1)
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Tree`)) {
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`TreeBreak`)
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`TreeBreak`)) {
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
-            info.changeScoreBy(1)
-            AddInv(9)
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Chest`)) {
-            if (randint(1, 2) == 1) {
-                AddInv(1)
-            } else {
-                AddInv(2)
-            }
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`BucketTile`)) {
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
-            AddInv(2)
-        } else if (Plr.tileKindAt(TileDirection.Right, assets.tile`Treetile`)) {
-            tiles.setTileAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), assets.tile`Grass`)
-            tiles.setWallAt(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row), false)
-            AddInv(9)
-        }
-    } else {
-        Plr.sayText("Inventory full.", 1000, false)
     }
 })
 function Craftmenu () {
@@ -643,11 +645,11 @@ function Craftmenu () {
     })
 }
 let Craft_menu: miniMenu.MenuSprite = null
-let Message = ""
-let PauseMenu: miniMenu.MenuSprite = null
 let Options: miniMenu.MenuSprite = null
 let Gamemode = 0
 let Main_menu: miniMenu.MenuSprite = null
+let Message = ""
+let PauseMenu: miniMenu.MenuSprite = null
 let Changelogs: miniMenu.MenuSprite = null
 let GamemodesHelp: miniMenu.MenuSprite = null
 let HelpMenu: miniMenu.MenuSprite = null
