@@ -425,25 +425,6 @@ d d d d d d d d d d d d d d d d
 d d d d d d d d d d d d d d d d 
 f f f f f f f f f f f f f f f f 
 `;
-            case "image31":
-            case "FixSelIcon":return img`
-2 f f f f f . . . . . . . . . 2 
-f 2 d d d f . . . . . . . . 2 . 
-f d 2 d d f . . . . . . . 2 . . 
-f d d 2 d f f f f f f f 2 . . . 
-f d d d 2 f d d d d d 2 . . . . 
-f f f f f 2 d d d d 2 f . . . . 
-f d d d d f 2 d d 2 d f . . . . 
-f d d d d f d 2 2 d d f . . . . 
-f d d d d f d 2 2 d d f . . . . 
-f d d d d f 2 f f 2 f f . . . . 
-f f f f f 2 . . . . 2 . . . . . 
-f d d d 2 f . . . . . 2 . . . . 
-f d d 2 d f . . . . . . 2 . . . 
-f d 2 d d f . . . . . . . 2 . . 
-f 2 d d d f . . . . . . . . 2 . 
-2 f f f f f . . . . . . . . . 2 
-`;
             case "image27":
             case "ResetIcon":return img`
 . . . . . . . . . . . . . . . . 
@@ -595,6 +576,44 @@ f f f f f f f f f f f f f f f f
 9 9 9 9 . 9 . 9 . 9 . 9 9 . . . 
 f f f f f f f f f f f f f f f f 
 . . . . . . . . . . . . . . . . 
+`;
+            case "image20":
+            case "PlayIcon0":return img`
+f f f . . . . . . . . . . . . . 
+f 7 7 f f . . . . . . . . . . . 
+f 7 7 7 7 f f . . . . . . . . . 
+f 7 7 7 7 7 7 f f . . . . . . . 
+f 7 7 7 7 7 7 7 7 f f . . . . . 
+f 7 7 7 7 7 7 7 7 7 7 f f . . . 
+f 7 7 7 7 7 7 7 7 7 7 7 7 f f . 
+f 7 7 7 7 7 7 7 7 7 7 7 7 7 7 f 
+f 7 7 7 7 7 7 7 7 7 7 7 7 7 7 f 
+f 7 7 7 7 7 7 7 7 7 7 7 7 f f . 
+f 7 7 7 7 7 7 7 7 7 7 f f . . . 
+f 7 7 7 7 7 7 7 7 f f . . . . . 
+f 7 7 7 7 7 7 f f . . . . . . . 
+f 7 7 7 7 f f . . . . . . . . . 
+f 7 7 f f . . . . . . . . . . . 
+f f f . . . . . . . . . . . . . 
+`;
+            case "image31":
+            case "FixSelIcon":return img`
+2 f f f f f . . . . . . . . . 2 
+f 2 d d d f . . . . . . . . 2 . 
+f d 2 d d f . . . . . . . 2 . . 
+f d d 2 d f f f f f f f 2 . . . 
+f d d d 2 f d d d d d 2 . . . . 
+f f f f f 2 d d d d 2 f . . . . 
+f d d d d f 2 d d 2 d f . . . . 
+f d d d d f d 2 2 d d f . . . . 
+f d d d d f d 2 2 d d f . . . . 
+f d d d d f 2 f f 2 f f . . . . 
+f f f f f 2 . . . . 2 . . . . . 
+f d d d 2 f . . . . . 2 . . . . 
+f d d 2 d f . . . . . . 2 . . . 
+f d 2 d d f . . . . . . . 2 . . 
+f 2 d d d f . . . . . . . . 2 . 
+2 f f f f f . . . . . . . . . 2 
 `;
         }
         return null;

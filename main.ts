@@ -210,11 +210,11 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
         } else {
             A = 1
             PauseMenu = miniMenu.createMenu(
-            miniMenu.createMenuItem("Resume", assets.image`PlayIcon`),
+            miniMenu.createMenuItem("Resume", assets.image`PlayIcon0`),
             miniMenu.createMenuItem("Chat", assets.image`ChatIcon`),
             miniMenu.createMenuItem("Main menu", assets.image`BackIcon`),
             miniMenu.createMenuItem("Reset", assets.image`ResetIcon`),
-            miniMenu.createMenuItem("Fix selector", assets.image`ResetIcon`)
+            miniMenu.createMenuItem("Fix selector", assets.image`FixSelIcon`)
             )
             PauseMenu.setPosition(Plr.x - 8, Plr.y)
             PauseMenu.setDimensions(100, 110)
