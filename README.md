@@ -42,10 +42,11 @@ Etc.
 - Changelogs in game too
 - Commands
 - Placing buckets
-- Selector shows selected item's nameRevamped controls
+- Selector shows selected item's name
+- Revamped controls
 - Changed some icons
 - You can't break a block if your inventory is full now
-- Revamped water texture again
+- Revamped water texture again.
 
 Controls
 - Left/right/down/up: Direction keys
