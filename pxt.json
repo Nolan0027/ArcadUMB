@@ -1,5 +1,6 @@
 {
     "name": "ArcadUMB 1.3 PreRelease",
+    "version": "0.1.0",
     "description": "",
     "dependencies": {
         "device": "*",
