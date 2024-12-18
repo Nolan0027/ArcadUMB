@@ -4,6 +4,7 @@ Link: (https://arcade.makecode.com/S53031-32861-63051-50401)
 - Version: 1.2
 - Size: 850Kb
 - December 16, 2024
+- [Dec 18] 1.3 PreRelease link: https://makecode.com/_hCo9J5JKbdx8
 
 Archives
 - [806Kb] 1.1 Link: (https://makecode.com/_WE1hTM2KPKgb)
