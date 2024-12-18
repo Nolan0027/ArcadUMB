@@ -94,6 +94,12 @@
         "tilemapTile": true,
         "displayName": "Treetile"
     },
+    "tile16": {
+        "data": "hwQQABAAAAAAAAAAAAAAAPD/////////8N3d3d3d3f3w/f///////fD9mZmZmfn98P2ZmZmZ+f3w/ZmZmZn5/fD9mZmZmfn98P2ZmZmZ+f3w/ZmZmZn5/fD9mZmZmfn98P2ZmZmZ+f3w/f///////fDd3d3d3d398P////////8AAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true,
+        "displayName": "BucketTile2"
+    },
     "level1": {
         "id": "level1",
         "mimeType": "application/mkcd-tilemap",
