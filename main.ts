@@ -79,56 +79,11 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (!(controller.A.isPressed())) {
-        if (A == 0 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr.tilemapLocation().column, Plr.tilemapLocation().row - 1)))) {
-            for (let index = 0; index < 4; index++) {
-                Plr.y += -4
-                Inv1.y += -4
-                Inv2.y += -4
-                Inv3.y += -4
-                InvCraft.y += -4
-                Selector.y += -4
-                UIFrame.y += -4
-                pause(30)
-            }
-        }
-    } else {
-        if (B != -1) {
-            Selector.y += -14.5
-            B += -1
-            if (Inv[B] == 1) {
-                Selector.sayText("Rock", 500, false)
-            } else if (Inv[B] == 2) {
-                Selector.sayText("Bucket", 500, false)
-            } else if (Inv[B] == 3) {
-                Selector.sayText("Bucket", 500, false)
-            } else if (Inv[B] == 4) {
-                Selector.sayText("Stone", 500, false)
-            } else if (Inv[B] == 5) {
-                Selector.sayText("Diamond", 500, false)
-            } else if (Inv[B] == 6) {
-                Selector.sayText("TNT", 500, false)
-            } else if (Inv[B] == 7) {
-                Selector.sayText("W. Pick", 500, false)
-            } else if (Inv[B] == 8) {
-                Selector.sayText("ST. Pick")
-            } else if (Inv[B] == 9) {
-                Selector.sayText("Wood", 500, false)
-            } else if (Inv[B] == 10) {
-                Selector.sayText("Meat", 500, false)
-            }
-        } else {
-            B = 2
-            Selector.y += 43.41
-        }
-    }
-})
-function HelpMenuFunc () {
+function HelpMenuFunc() {
     HelpMenu = miniMenu.createMenu(
-    miniMenu.createMenuItem("Back", assets.image`BackIcon`),
-    miniMenu.createMenuItem("Gamemodes", assets.image`Gamemodeicon`),
-    miniMenu.createMenuItem("Changelogs", assets.image`NotesIcon`)
+        miniMenu.createMenuItem("Back", assets.image`BackIcon`),
+        miniMenu.createMenuItem("Gamemodes", assets.image`Gamemodeicon`),
+        miniMenu.createMenuItem("Changelogs", assets.image`NotesIcon`)
     )
     HelpMenu.x = 83
     HelpMenu.setDimensions(100, 110)
@@ -140,11 +95,11 @@ function HelpMenuFunc () {
         } else if (selectedIndex == 1) {
             HelpMenu.close()
             GamemodesHelp = miniMenu.createMenu(
-            miniMenu.createMenuItem("Back", assets.image`BackIcon`),
-            miniMenu.createMenuItem("Survival: Limited resources"),
-            miniMenu.createMenuItem("And health"),
-            miniMenu.createMenuItem("Creative: Unlimited resources"),
-            miniMenu.createMenuItem("And health.")
+                miniMenu.createMenuItem("Back", assets.image`BackIcon`),
+                miniMenu.createMenuItem("Survival: Limited resources"),
+                miniMenu.createMenuItem("And health"),
+                miniMenu.createMenuItem("Creative: Unlimited resources"),
+                miniMenu.createMenuItem("And health.")
             )
             GamemodesHelp.x = 128
             GamemodesHelp.setDimensions(100, 110)
@@ -158,21 +113,20 @@ function HelpMenuFunc () {
         } else if (selectedIndex == 2) {
             HelpMenu.close()
             Changelogs = miniMenu.createMenuFromArray([
-            miniMenu.createMenuItem("Back", assets.image`BackIcon`),
-            miniMenu.createMenuItem("1.0<><><><><><>", assets.image`1_0relIcon`),
-            miniMenu.createMenuItem("Fixed all bugs from PreRel"),
-            miniMenu.createMenuItem("Added chests"),
-            miniMenu.createMenuItem("Buckets and pause menu"),
-            miniMenu.createMenuItem("Revamped UI. Made world"),
-            miniMenu.createMenuItem("Not restricted to camera"),
-            miniMenu.createMenuItem("Etc"),
-            miniMenu.createMenuItem("1.1<><><><><>", assets.image`1_1RelIcon`),
-            miniMenu.createMenuItem("Fixed UI bugs"),
-            miniMenu.createMenuItem("Added main menu"),
-            miniMenu.createMenuItem("Revamped pause menu"),
-            miniMenu.createMenuItem("Changed keybinds"),
-            miniMenu.createMenuItem("Etc"),
-            miniMenu.createMenuItem("Full is on github page")
+                miniMenu.createMenuItem("Back", assets.image`BackIcon`),
+                miniMenu.createMenuItem("1.0<><><><><><>", assets.image`1_0Icon`),
+                miniMenu.createMenuItem("Fixed all bugs from PreRel"),
+                miniMenu.createMenuItem("Added chests"),
+                miniMenu.createMenuItem("Buckets and pause menu"),
+                miniMenu.createMenuItem("Revamped UI. Made world"),
+                miniMenu.createMenuItem("Not restricted to camera"),
+                miniMenu.createMenuItem("Etc"),
+                miniMenu.createMenuItem("1.1<><><><><>", assets.image`1_1Icon`),
+                miniMenu.createMenuItem("Fixed UI bugs"),
+                miniMenu.createMenuItem("Added main menu"),
+                miniMenu.createMenuItem("Changed keybinds"),
+                miniMenu.createMenuItem("Etc"),
+                miniMenu.createMenuItem("Full is on github page")
             ])
             Changelogs.x = 105
             Changelogs.y = 92
@@ -188,19 +142,8 @@ function HelpMenuFunc () {
     })
     scene.centerCameraAt(95, 60)
 }
-function Hunger (Val: number) {
+function Hunger(Val: number) {
     info.setScore(Val)
-    pause(100)
-    Craftmenu()
-    Craft_menu.close()
-    A = 0
-    while (A == 0) {
-        pause(12000)
-        info.changeScoreBy(-1)
-        if (info.score() == 0) {
-            game.gameOver(false)
-        }
-    }
 }
 controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
     if (A == 0) {
@@ -210,11 +153,11 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
         } else {
             A = 1
             PauseMenu = miniMenu.createMenu(
-            miniMenu.createMenuItem("Resume", assets.image`PlayIcon0`),
-            miniMenu.createMenuItem("Chat", assets.image`ChatIcon`),
-            miniMenu.createMenuItem("Main menu", assets.image`BackIcon`),
-            miniMenu.createMenuItem("Reset", assets.image`ResetIcon`),
-            miniMenu.createMenuItem("Fix selector", assets.image`FixSelIcon`)
+                miniMenu.createMenuItem("Resume", assets.image`ResumeIcon`),
+                miniMenu.createMenuItem("Chat", assets.image`ChatIcon`),
+                miniMenu.createMenuItem("Main menu", assets.image`BackIcon`),
+                miniMenu.createMenuItem("Reset", assets.image`ResetIcon`),
+                miniMenu.createMenuItem("Fix selector", assets.image`FixSelIcon`)
             )
             PauseMenu.setPosition(Plr.x - 8, Plr.y)
             PauseMenu.setDimensions(100, 110)
@@ -270,7 +213,21 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
-function RenderInv () {
+controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (A == 0 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr.tilemapLocation().column - 1, Plr.tilemapLocation().row)))) {
+        for (let index = 0; index < 4; index++) {
+            Plr.x += -4
+            Inv1.x += -4
+            Inv2.x += -4
+            Inv3.x += -4
+            InvCraft.x += -4
+            Selector.x += -4
+            UIFrame.x += -4
+            pause(30)
+        }
+    }
+})
+function RenderInv() {
     if (Inv[0] == 0) {
         Inv1.setImage(assets.image`InvNone`)
     } else if (Inv[0] == 1) {
@@ -341,20 +298,6 @@ function RenderInv () {
         Inv3.setImage(assets.image`Flesh`)
     }
 }
-controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (A == 0 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr.tilemapLocation().column - 1, Plr.tilemapLocation().row)))) {
-        for (let index = 0; index < 4; index++) {
-            Plr.x += -4
-            Inv1.x += -4
-            Inv2.x += -4
-            Inv3.x += -4
-            InvCraft.x += -4
-            Selector.x += -4
-            UIFrame.x += -4
-            pause(30)
-        }
-    }
-})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (A == 0 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr.tilemapLocation().column + 1, Plr.tilemapLocation().row)))) {
         for (let index = 0; index < 4; index++) {
@@ -369,7 +312,7 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
-function Mainmenu () {
+function Mainmenu() {
     A = 1
     if (C == 1) {
         scene.setBackgroundColor(15)
@@ -382,10 +325,10 @@ function Mainmenu () {
         UIFrame.scale = 0
     }
     Main_menu = miniMenu.createMenu(
-    miniMenu.createMenuItem("Singleplayer", assets.image`PlayIcon`),
-    miniMenu.createMenuItem("Multiplayer", assets.image`MultiplayIcon`),
-    miniMenu.createMenuItem("Options", assets.image`OptionsIcon`),
-    miniMenu.createMenuItem("Information", assets.image`Questionicon`)
+        miniMenu.createMenuItem("Singleplayer", assets.image`Play1Icon`),
+        miniMenu.createMenuItem("Multiplayer", assets.image`Play2Icon`),
+        miniMenu.createMenuItem("Options", assets.image`OptionsIcon`),
+        miniMenu.createMenuItem("Information", assets.image`Questionicon`)
     )
     Main_menu.x = 90
     Main_menu.setDimensions(100, 110)
@@ -393,73 +336,30 @@ function Mainmenu () {
     scene.centerCameraAt(95, 60)
     Main_menu.onButtonPressed(controller.A, function (selection, selectedIndex) {
         if (selectedIndex == 0) {
-            game.splash("A button doesn't work until 1 min after spawning idk why")
-            if (C == 0) {
-                Plr = sprites.create(assets.image`Player`, SpriteKind.Player)
-                Inv1 = sprites.create(assets.image`InvNone`, SpriteKind.Inventory)
-                Inv2 = sprites.create(assets.image`InvNone`, SpriteKind.Inventory)
-                Inv3 = sprites.create(assets.image`InvNone`, SpriteKind.Inventory)
-                InvCraft = sprites.create(assets.image`InvCraft`, SpriteKind.Inventory)
-                UIFrame = sprites.create(assets.image`UIFrame`, SpriteKind.Inventory)
-                Selector = sprites.create(assets.image`Select`, SpriteKind.Inventory)
-                Inv = [0, 0, 0]
-                Inv1.setPosition(51, 92)
-                Inv2.setPosition(51, 108)
-                Inv3.setPosition(51, 124)
-                InvCraft.setPosition(51, 78)
-                Selector.setPosition(67, 78)
-                UIFrame.setPosition(124, 140)
-                UIFrame.sx = 10
-                scene.setBackgroundColor(9)
-                tiles.setCurrentTilemap(tilemap`World`)
-                Plr.scale = 1
-                Plr.setPosition(122, 88)
-                scene.cameraFollowSprite(Plr)
-                info.setScore(0)
-                C = 1
-                Main_menu.close()
-                A = 0
-                UIFrame.setFlag(SpriteFlag.GhostThroughWalls, true)
-                UIFrame.setFlag(SpriteFlag.GhostThroughSprites, true)
-                Inv1.setFlag(SpriteFlag.GhostThroughWalls, true)
-                Inv1.setFlag(SpriteFlag.GhostThroughSprites, true)
-                Inv2.setFlag(SpriteFlag.GhostThroughWalls, true)
-                Inv2.setFlag(SpriteFlag.GhostThroughSprites, true)
-                Inv3.setFlag(SpriteFlag.GhostThroughWalls, true)
-                Inv3.setFlag(SpriteFlag.GhostThroughSprites, true)
-                InvCraft.setFlag(SpriteFlag.GhostThroughWalls, true)
-                InvCraft.setFlag(SpriteFlag.GhostThroughSprites, true)
-                Selector.setFlag(SpriteFlag.GhostThroughWalls, true)
-                Selector.setFlag(SpriteFlag.GhostThroughSprites, true)
-                Selector.setFlag(SpriteFlag.GhostThroughTiles, true)
-                UIFrame.setStayInScreen(true)
-                Inv1.setStayInScreen(true)
-                Inv2.setStayInScreen(true)
-                Inv3.setStayInScreen(true)
-            } else {
-                Inv1.scale = 1
-                Inv2.scale = 1
-                Inv3.scale = 1
-                InvCraft.scale = 1
-                UIFrame.scale = 1
-                UIFrame.sx = 10
-                scene.setBackgroundColor(9)
-                tiles.setCurrentTilemap(tilemap`World`)
-                scene.cameraFollowSprite(Plr)
-                Main_menu.close()
-                A = 0
-            }
-            if (Gamemode == 0) {
-                info.setLife(10)
-                Hunger(10)
-            } else {
-                info.setLife(999999)
-            }
+            MakeWorldMenu = miniMenu.createMenu(
+                miniMenu.createMenuItem("Back", assets.image`BackIcon`),
+                miniMenu.createMenuItem("Create", assets.image`MakewrldIcon`),
+                miniMenu.createMenuItem("Trees?", assets.image`OptionsIcon`),
+                miniMenu.createMenuItem("Luck [-1 - 3]", assets.image`OptionsIcon`),
+                miniMenu.createMenuItem("Multiplayer?", assets.image`OptionsIcon`)
+            )
+            MakeWorldMenu.x = 90
+            MakeWorldMenu.setTitle("Create world")
+            MakeWorldMenu.onButtonPressed(controller.A, function (selection, selectedIndex) {
+                if (selectedIndex == 0) {
+                    MakeWorldMenu.close()
+                    Mainmenu()
+                }
+                if (selectedIndex == 1) {
+                    MakeWorldMenu.close()
+                    GenerateWorld(1, 1, 1, 1)
+                }
+            })
         } else if (selectedIndex == 2) {
             Main_menu.close()
             Options = miniMenu.createMenu(
-            miniMenu.createMenuItem("Back", assets.image`BackIcon`),
-            miniMenu.createMenuItem("GameMode", assets.image`Gamemodeicon`)
+                miniMenu.createMenuItem("Back", assets.image`BackIcon`),
+                miniMenu.createMenuItem("GameMode", assets.image`Gamemodeicon`)
             )
             Options.x = 78
             Options.setDimensions(100, 110)
@@ -527,7 +427,7 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         RenderInv()
     }
 })
-function AddInv (Num: number) {
+function AddInv(Num: number) {
     if (Inv.indexOf(0) == -1) {
         Plr.sayText("Inventory full.", 1250, false)
     } else {
@@ -555,6 +455,142 @@ function AddInv (Num: number) {
         Inv[Inv.indexOf(0)] = Num
         RenderInv()
     }
+}
+function GenerateWorld(Luck: number, Chests: number, Stone: number, Seed: number) {
+    D = randint(16, 44)
+    E = randint(3, 58)
+    scene.setBackgroundColor(7)
+    tiles.setCurrentTilemap(tilemap`Wrld`)
+    tiles.setTileAt(tiles.getTileLocation(D, E), assets.tile`Stone`)
+    scene.setBackgroundColor(4)
+    for (let index = 0; index < 4; index++) {
+        for (let index = 0; index < 8; index++) {
+            D += 1
+            tiles.setTileAt(tiles.getTileLocation(D, E), assets.tile`Stone`)
+            if (randint(1, 15) == 5) {
+                E += 1
+            }
+        }
+        D += -6
+    }
+    scene.setBackgroundColor(7)
+    A = 1
+    if (C == 1) {
+        scene.setBackgroundColor(15)
+        tiles.setCurrentTilemap(tilemap`Void`)
+        Inv1.scale = 0
+        Inv2.scale = 0
+        Inv3.scale = 0
+        Selector.scale = 0
+        InvCraft.scale = 0
+        UIFrame.scale = 0
+    }
+    Main_menu = miniMenu.createMenu(
+        miniMenu.createMenuItem("Singleplayer", assets.image`Play1Icon`),
+        miniMenu.createMenuItem("Multiplayer", assets.image`Play2Icon`),
+        miniMenu.createMenuItem("Options", assets.image`OptionsIcon`),
+        miniMenu.createMenuItem("Information", assets.image`Questionicon`)
+    )
+    Main_menu.x = 90
+    Main_menu.setDimensions(100, 110)
+    Main_menu.setTitle("Main menu")
+    scene.centerCameraAt(95, 60)
+    Main_menu.onButtonPressed(controller.A, function (selection, selectedIndex) {
+        if (selectedIndex == 0) {
+            if (C == 0) {
+                Plr = sprites.create(assets.image`Player`, SpriteKind.Player)
+                Inv1 = sprites.create(assets.image`InvNone`, SpriteKind.Inventory)
+                Inv2 = sprites.create(assets.image`InvNone`, SpriteKind.Inventory)
+                Inv3 = sprites.create(assets.image`InvNone`, SpriteKind.Inventory)
+                InvCraft = sprites.create(assets.image`InvCraft`, SpriteKind.Inventory)
+                UIFrame = sprites.create(assets.image`UIFrame`, SpriteKind.Inventory)
+                Selector = sprites.create(assets.image`Select`, SpriteKind.Inventory)
+                Inv = [0, 0, 0]
+                Inv1.setPosition(51, 92)
+                Inv2.setPosition(51, 108)
+                Inv3.setPosition(51, 124)
+                InvCraft.setPosition(51, 78)
+                Selector.setPosition(67, 78)
+                UIFrame.setPosition(124, 140)
+                UIFrame.sx = 10
+                scene.setBackgroundColor(9)
+                tiles.setCurrentTilemap(tilemap`Wrld`)
+                Plr.scale = 1
+                Plr.setPosition(122, 88)
+                scene.cameraFollowSprite(Plr)
+                info.setScore(0)
+                C = 1
+                Main_menu.close()
+                A = 0
+                UIFrame.setFlag(SpriteFlag.GhostThroughWalls, true)
+                UIFrame.setFlag(SpriteFlag.GhostThroughSprites, true)
+                Inv1.setFlag(SpriteFlag.GhostThroughWalls, true)
+                Inv1.setFlag(SpriteFlag.GhostThroughSprites, true)
+                Inv2.setFlag(SpriteFlag.GhostThroughWalls, true)
+                Inv2.setFlag(SpriteFlag.GhostThroughSprites, true)
+                Inv3.setFlag(SpriteFlag.GhostThroughWalls, true)
+                Inv3.setFlag(SpriteFlag.GhostThroughSprites, true)
+                InvCraft.setFlag(SpriteFlag.GhostThroughWalls, true)
+                InvCraft.setFlag(SpriteFlag.GhostThroughSprites, true)
+                Selector.setFlag(SpriteFlag.GhostThroughWalls, true)
+                Selector.setFlag(SpriteFlag.GhostThroughSprites, true)
+                Selector.setFlag(SpriteFlag.GhostThroughTiles, true)
+                UIFrame.setStayInScreen(true)
+                Inv1.setStayInScreen(true)
+                Inv2.setStayInScreen(true)
+                Inv3.setStayInScreen(true)
+            } else {
+                Inv1.scale = 1
+                Inv2.scale = 1
+                Inv3.scale = 1
+                InvCraft.scale = 1
+                UIFrame.scale = 1
+                UIFrame.sx = 10
+                scene.setBackgroundColor(9)
+                tiles.setCurrentTilemap(tilemap`Wrld`)
+                scene.cameraFollowSprite(Plr)
+                Main_menu.close()
+                A = 0
+            }
+            if (Gamemode == 0) {
+                info.setLife(10)
+                Hunger(10)
+            } else {
+                info.setLife(9999999)
+            }
+        } else if (selectedIndex == 2) {
+            Main_menu.close()
+            Options = miniMenu.createMenu(
+                miniMenu.createMenuItem("Back", assets.image`BackIcon`),
+                miniMenu.createMenuItem("GameMode", assets.image`Gamemodeicon`)
+            )
+            Options.x = 78
+            Options.setDimensions(100, 110)
+            Options.setTitle("Options")
+            Options.onButtonPressed(controller.A, function (selection, selectedIndex) {
+                if (selectedIndex == 0) {
+                    Options.close()
+                    Mainmenu()
+                } else if (selectedIndex == 1) {
+                    if (Gamemode == 0) {
+                        Gamemode = 1
+                        Options.setTitle("Creative")
+                        pause(900)
+                        Options.setTitle("Options")
+                    } else if (Gamemode == 1) {
+                        Gamemode = 0
+                        Options.setTitle("Survival")
+                        pause(900)
+                        Options.setTitle("Options")
+                    }
+                }
+            })
+            scene.centerCameraAt(95, 60)
+        } else if (selectedIndex == 3) {
+            Main_menu.close()
+            HelpMenuFunc()
+        }
+    })
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(controller.A.isPressed())) {
@@ -601,11 +637,11 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
-function Craftmenu () {
+function Craftmenu() {
     Craft_menu = miniMenu.createMenu(
-    miniMenu.createMenuItem("Back", assets.image`BackIcon`),
-    miniMenu.createMenuItem("3 Wood", assets.image`WPickIcon`),
-    miniMenu.createMenuItem("2 Wood+1 Stone", assets.image`SPickIcon`)
+        miniMenu.createMenuItem("Back", assets.image`BackIcon`),
+        miniMenu.createMenuItem("3 Wood", assets.image`WPickIcon`),
+        miniMenu.createMenuItem("2 Wood+1 Stone", assets.image`SPickIcon`)
     )
     Craft_menu.setDimensions(100, 110)
     Craft_menu.setTitle("Crafting")
@@ -639,21 +675,71 @@ function Craftmenu () {
         }
     })
 }
-let Options: miniMenu.MenuSprite = null
-let Gamemode = 0
-let Main_menu: miniMenu.MenuSprite = null
-let Msg = ""
-let PauseMenu: miniMenu.MenuSprite = null
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (A == 0) {
+        if (!(controller.A.isPressed())) {
+            if (!(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr.tilemapLocation().column, Plr.tilemapLocation().row - 1)))) {
+                for (let index = 0; index < 4; index++) {
+                    Plr.y += -4
+                    Inv1.y += -4
+                    Inv2.y += -4
+                    Inv3.y += -4
+                    InvCraft.y += -4
+                    Selector.y += -4
+                    UIFrame.y += -4
+                    pause(30)
+                }
+            }
+        } else {
+            if (B != -1) {
+                Selector.y += -14.5
+                B += -1
+                if (Inv[B] == 1) {
+                    Selector.sayText("Rock", 500, false)
+                } else if (Inv[B] == 2) {
+                    Selector.sayText("Bucket", 500, false)
+                } else if (Inv[B] == 3) {
+                    Selector.sayText("Bucket", 500, false)
+                } else if (Inv[B] == 4) {
+                    Selector.sayText("Stone", 500, false)
+                } else if (Inv[B] == 5) {
+                    Selector.sayText("Diamond", 500, false)
+                } else if (Inv[B] == 6) {
+                    Selector.sayText("TNT", 500, false)
+                } else if (Inv[B] == 7) {
+                    Selector.sayText("W. Pick", 500, false)
+                } else if (Inv[B] == 8) {
+                    Selector.sayText("ST. Pick")
+                } else if (Inv[B] == 9) {
+                    Selector.sayText("Wood", 500, false)
+                } else if (Inv[B] == 10) {
+                    Selector.sayText("Meat", 500, false)
+                }
+            } else {
+                B = 2
+                Selector.y += 43.41
+            }
+        }
+    }
+})
 let Craft_menu: miniMenu.MenuSprite = null
-let Changelogs: miniMenu.MenuSprite = null
-let GamemodesHelp: miniMenu.MenuSprite = null
-let HelpMenu: miniMenu.MenuSprite = null
+let E = 0
+let D = 0
+let Gamemode = 0
+let Options: miniMenu.MenuSprite = null
+let MakeWorldMenu: miniMenu.MenuSprite = null
+let Main_menu: miniMenu.MenuSprite = null
 let UIFrame: Sprite = null
-let Selector: Sprite = null
 let InvCraft: Sprite = null
 let Inv3: Sprite = null
 let Inv2: Sprite = null
 let Inv1: Sprite = null
+let Selector: Sprite = null
+let Msg = ""
+let PauseMenu: miniMenu.MenuSprite = null
+let Changelogs: miniMenu.MenuSprite = null
+let GamemodesHelp: miniMenu.MenuSprite = null
+let HelpMenu: miniMenu.MenuSprite = null
 let Inv: number[] = []
 let Plr: Sprite = null
 let C = 0
