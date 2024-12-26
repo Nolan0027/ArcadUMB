@@ -532,7 +532,7 @@ function GenerateWorld (Chests: number, Twoplayer: number, Seed: number) {
     } else {
         info.setLife(9999999)
     }
-    Plr.sayText("Seed: " + Seed)
+    Plr.sayText("Seed: " + Seed, 2500, false)
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(controller.A.isPressed())) {
