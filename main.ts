@@ -1,5 +1,5 @@
 namespace SpriteKind {
-    export const Inventory = SpriteKind.create()
+    export const UI = SpriteKind.create()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (A == 0) {
@@ -140,6 +140,14 @@ function HelpMenuFunc () {
     })
     scene.centerCameraAt(95, 60)
 }
+controller.player2.onButtonEvent(ControllerButton.Right, ControllerButtonEvent.Pressed, function () {
+    if (G == 1 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr2.tilemapLocation().column, Plr2.tilemapLocation().row - 1)))) {
+        for (let index = 0; index < 4; index++) {
+            Plr2.x += 4
+            pause(30)
+        }
+    }
+})
 function Hunger (Val: number) {
     info.setScore(Val)
 }
@@ -170,7 +178,6 @@ controller.menu.onEvent(ControllerButtonEvent.Pressed, function () {
                     A = 0
                     PauseMenu.close()
                     scene.cameraFollowSprite(Plr)
-                    Msg = game.askForString("/Chat/.", 24)
                 } else if (selectedIndex == 2) {
                     PauseMenu.close()
                     Mainmenu()
@@ -257,6 +264,14 @@ function RenderInv () {
         Inv3.setImage(assets.image`Flesh`)
     }
 }
+controller.player2.onButtonEvent(ControllerButton.Left, ControllerButtonEvent.Pressed, function () {
+    if (G == 1 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr2.tilemapLocation().column, Plr2.tilemapLocation().row - 1)))) {
+        for (let index = 0; index < 4; index++) {
+            Plr2.x += -4
+            pause(30)
+        }
+    }
+})
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     if (A == 0 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr.tilemapLocation().column - 1, Plr.tilemapLocation().row)))) {
         for (let index = 0; index < 4; index++) {
@@ -422,6 +437,14 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         RenderInv()
     }
 })
+controller.player2.onButtonEvent(ControllerButton.Up, ControllerButtonEvent.Pressed, function () {
+    if (G == 1 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr2.tilemapLocation().column, Plr2.tilemapLocation().row - 1)))) {
+        for (let index = 0; index < 4; index++) {
+            Plr2.y += -4
+            pause(30)
+        }
+    }
+})
 function AddInv (Num: number) {
     if (Inv.indexOf(0) == -1) {
         Plr.sayText("Inventory full.", 1250, false)
@@ -451,6 +474,14 @@ function AddInv (Num: number) {
         RenderInv()
     }
 }
+controller.player2.onButtonEvent(ControllerButton.Down, ControllerButtonEvent.Pressed, function () {
+    if (G == 1 && !(tiles.tileAtLocationIsWall(tiles.getTileLocation(Plr2.tilemapLocation().column, Plr2.tilemapLocation().row - 1)))) {
+        for (let index = 0; index < 4; index++) {
+            Plr2.y += 4
+            pause(30)
+        }
+    }
+})
 function GenerateWorld (Chests: number, Twoplayer: number, Seed: number) {
     A = 3
     D = randint(16, 44)
@@ -458,12 +489,12 @@ function GenerateWorld (Chests: number, Twoplayer: number, Seed: number) {
     tiles.setCurrentTilemap(tilemap`Wrld`)
     tiles.setTileAt(tiles.getTileLocation(D, E), assets.tile`Stone`)
     if (Chests == 1) {
-        for (let index = 0; index < 15; index++) {
+        for (let index = 0; index < 16; index++) {
             tiles.setTileAt(tiles.getTileLocation(randint(5, 60), randint(5, 60)), assets.tile`Chest`)
         }
         tileUtil.setWalls(assets.tile`Chest`, true)
     }
-    for (let index = 0; index < 8; index++) {
+    for (let index = 0; index < 9; index++) {
         for (let index = 0; index < randint(3, 5); index++) {
             for (let index = 0; index < 5; index++) {
                 D += 1
@@ -472,14 +503,24 @@ function GenerateWorld (Chests: number, Twoplayer: number, Seed: number) {
                     E += 1
                 } else if (randint(1, 26) == 5) {
                     tiles.setTileAt(tiles.getTileLocation(D, E), assets.tile`Diamond`)
+                    D += 1
+                    if (Math.percentChance(20)) {
+                        break;
+                    }
+                } else {
+                    tiles.setTileAt(tiles.getTileLocation(D, E), assets.tile`Stone`)
                 }
             }
-            D += -10
+            if (Math.percentChance(90)) {
+                D += -4
+            } else {
+                D += -1
+            }
         }
         D = randint(16, 44)
         E = randint(3, 58)
     }
-    for (let index = 0; index < 20; index++) {
+    for (let index = 0; index < 30; index++) {
         D = randint(16, 44)
         E = randint(3, 58)
         if (Math.percentChance(90)) {
@@ -495,23 +536,13 @@ function GenerateWorld (Chests: number, Twoplayer: number, Seed: number) {
     tileUtil.setWalls(assets.tile`Stone`, true)
     tileUtil.setWalls(assets.tile`Diamond`, true)
     tileUtil.replaceAllTiles(assets.tile`transparency16`, assets.tile`Grass`)
-    if (D < 10 && E > 10) {
-        Seed = parseFloat("0" + D + E + F + G)
-    } else if (D > 10 && E > 10) {
-        Seed = parseFloat("" + D + E + F + G)
-    } else if (D > 10 && E < 10) {
-        Seed = parseFloat("" + D + "0" + E + F + G)
-    } else if (D < 10 && E < 10) {
-        Seed = parseFloat("0" + D + "0" + E + F + G)
-    }
-    A = 0
     Plr = sprites.create(assets.image`Player`, SpriteKind.Player)
-    Inv1 = sprites.create(assets.image`InvNone`, SpriteKind.Inventory)
-    Inv2 = sprites.create(assets.image`InvNone`, SpriteKind.Inventory)
-    Inv3 = sprites.create(assets.image`InvNone`, SpriteKind.Inventory)
-    InvCraft = sprites.create(assets.image`InvCraft`, SpriteKind.Inventory)
-    UIFrame = sprites.create(assets.image`UIFrame`, SpriteKind.Inventory)
-    Selector = sprites.create(assets.image`Select`, SpriteKind.Inventory)
+    Inv1 = sprites.create(assets.image`InvNone`, SpriteKind.UI)
+    Inv2 = sprites.create(assets.image`InvNone`, SpriteKind.UI)
+    Inv3 = sprites.create(assets.image`InvNone`, SpriteKind.UI)
+    InvCraft = sprites.create(assets.image`InvCraft`, SpriteKind.UI)
+    UIFrame = sprites.create(assets.image`UIFrame`, SpriteKind.UI)
+    Selector = sprites.create(assets.image`Select`, SpriteKind.UI)
     Inv = [0, 0, 0]
     Inv1.setPosition(51, 92)
     Inv2.setPosition(51, 108)
@@ -521,19 +552,17 @@ function GenerateWorld (Chests: number, Twoplayer: number, Seed: number) {
     UIFrame.setPosition(124, 140)
     UIFrame.sx = 10
     scene.setBackgroundColor(9)
-    Plr.scale = 1
     Plr.setPosition(122, 88)
     scene.cameraFollowSprite(Plr)
-    info.setScore(0)
     C = 1
-    Main_menu.close()
-    A = 0
     if (Gamemode == 0) {
         info.setLife(10)
         Hunger(10)
     } else {
         info.setLife(9999999)
     }
+    Main_menu.close()
+    A = 0
     UIFrame.setFlag(SpriteFlag.GhostThroughWalls, true)
     UIFrame.setFlag(SpriteFlag.GhostThroughSprites, true)
     Inv1.setFlag(SpriteFlag.GhostThroughWalls, true)
@@ -551,7 +580,11 @@ function GenerateWorld (Chests: number, Twoplayer: number, Seed: number) {
     Inv1.setStayInScreen(true)
     Inv2.setStayInScreen(true)
     Inv3.setStayInScreen(true)
-    Plr.sayText("Seed: " + Seed, 2500, false)
+    if (Twoplayer == 1) {
+        Plr2 = sprites.create(assets.image`Player2`, SpriteKind.Player)
+        Plr2.setPosition(122, 88)
+        Plr.sayText("Player 2 connected", 2000, false)
+    }
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(controller.A.isPressed())) {
@@ -597,6 +630,23 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
             Selector.y += -43.41
         }
     }
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    Plr.setImage(assets.image`PlayerDmg`)
+    for (let index = 0; index < 4; index++) {
+        pause(20)
+        Plr.x += -4
+        Inv1.x += -4
+        Inv2.x += -4
+        Inv3.x += -4
+        InvCraft.x += -4
+        Selector.x += -4
+        UIFrame.x += -4
+        pause(30)
+    }
+    pause(100)
+    Plr.setImage(assets.image`Player01`)
 })
 function Craftmenu () {
     Craft_menu = miniMenu.createMenu(
@@ -683,15 +733,14 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
         }
     }
 })
+let Zombie: Sprite = null
+let Time = 0
 let Craft_menu: miniMenu.MenuSprite = null
-let Seed = 0
 let E = 0
 let D = 0
 let Gamemode = 0
 let Options: miniMenu.MenuSprite = null
 let H = 0
-let G = 0
-let F = 0
 let MakeWorldMenu: miniMenu.MenuSprite = null
 let Main_menu: miniMenu.MenuSprite = null
 let UIFrame: Sprite = null
@@ -700,11 +749,13 @@ let Inv3: Sprite = null
 let Inv2: Sprite = null
 let Inv1: Sprite = null
 let Selector: Sprite = null
-let Msg = ""
 let PauseMenu: miniMenu.MenuSprite = null
+let Plr2: Sprite = null
+let G = 0
 let Changelogs: miniMenu.MenuSprite = null
 let GamemodesHelp: miniMenu.MenuSprite = null
 let HelpMenu: miniMenu.MenuSprite = null
+let F = 0
 let Inv: number[] = []
 let Plr: Sprite = null
 let C = 0
@@ -715,4 +766,28 @@ B = -1
 C = 0
 Plr = sprites.create(assets.image`Void`, SpriteKind.Player)
 Inv = [0, 0, 0]
+F = 1
 Mainmenu()
+game.onUpdateInterval(30000, function () {
+    if (A == 0) {
+        if (Time == 0) {
+            scene.setBackgroundColor(8)
+            Plr.setImage(assets.image`Player0`)
+            Time = 1
+        } else if (Time == 1) {
+            scene.setBackgroundColor(15)
+            Plr.setImage(assets.image`Player01`)
+            Time = 2
+            for (let index = 0; index < 4; index++) {
+                Zombie = sprites.create(assets.image`Zombie`, SpriteKind.Enemy)
+                Zombie.follow(Plr, 50)
+                Zombie.setPosition(randint(5, 400), randint(5, 400))
+            }
+        } else if (Time == 2) {
+            scene.setBackgroundColor(9)
+            Plr.setImage(assets.image`Player`)
+            sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+            Time = 0
+        }
+    }
+})

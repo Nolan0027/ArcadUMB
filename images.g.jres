@@ -159,6 +159,31 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "MakewrldIcon"
     },
+    "image22": {
+        "data": "hwQQABAAAAAAAAAAAAAAAJmZmZmZmZmZ///////////f3d3d3d3d/d/d3d3/////393d3Z+ZmZnf3d3dn5mZmd/d3d2fmZmZ393d3Z+ZmZnf3d3dn5mZmd/d3d2fmZmZ/////5+ZmZmZmZmZmZmZmQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Player2"
+    },
+    "image26": {
+        "data": "hwQQABAAAAAAAAAAAAAAAP//////////////////////d////3d3//93//9/d3f//3f//3f3d///d/9/d/93//93/3f3/3f//3d/d///d///d3f3//93//93d////3f//////////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Zombie"
+    },
+    "image29": {
+        "data": "hwQQABAAAAAAAAAAAAAAAP////////////////////9PRERERERE9E9ERET/////T0RERP////9PRERE/////09ERET/////T0RERP////9PRERE/////09ERET//////////////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Player01"
+    },
+    "image24": {
+        "data": "hwQQABAAAAAAAAAAAAAAAP////////////////////8vIiIiIiIi8i8iIiL/////LyIiIv////8vIiIi/////y8iIiL/////LyIiIv////8vIiIi/////y8iIiL//////////////////////////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "PlayerDmg"
+    },
+    "image28": {
+        "data": "hwQQABAAAAAAAAAAAAAAAIiIiIiIiIiI//////////9PRERERERE9E9ERET/////T0RERI+IiIhPREREj4iIiE9ERESPiIiIT0RERI+IiIhPREREj4iIiE9ERESPiIiI/////4+IiIiIiIiIiIiIiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "Player0"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",
