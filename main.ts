@@ -459,21 +459,41 @@ function GenerateWorld (Chests: number, Twoplayer: number, Seed: number) {
     tiles.setTileAt(tiles.getTileLocation(D, E), assets.tile`Stone`)
     if (Chests == 1) {
         for (let index = 0; index < 15; index++) {
-            tiles.setTileAt(tiles.getTileLocation(randint(5, 80), randint(5, 80)), assets.tile`Chest`)
+            tiles.setTileAt(tiles.getTileLocation(randint(5, 60), randint(5, 60)), assets.tile`Chest`)
         }
         tileUtil.setWalls(assets.tile`Chest`, true)
     }
-    for (let index = 0; index < 4; index++) {
-        for (let index = 0; index < 8; index++) {
-            D += 1
-            tiles.setTileAt(tiles.getTileLocation(D, E), assets.tile`Stone`)
-            if (randint(1, 15) == 5) {
-                E += 1
+    for (let index = 0; index < 8; index++) {
+        for (let index = 0; index < randint(3, 5); index++) {
+            for (let index = 0; index < 5; index++) {
+                D += 1
+                tiles.setTileAt(tiles.getTileLocation(D, E), assets.tile`Stone`)
+                if (randint(1, 9) == 5) {
+                    E += 1
+                } else if (randint(1, 26) == 5) {
+                    tiles.setTileAt(tiles.getTileLocation(D, E), assets.tile`Diamond`)
+                }
             }
+            D += -10
         }
-        D += -6
+        D = randint(16, 44)
+        E = randint(3, 58)
+    }
+    for (let index = 0; index < 20; index++) {
+        D = randint(16, 44)
+        E = randint(3, 58)
+        if (Math.percentChance(90)) {
+            tiles.setTileAt(tiles.getTileLocation(D, E), assets.tile`Flower1`)
+            tiles.setTileAt(tiles.getTileLocation(D + 1, E), assets.tile`FlowerDust`)
+            tiles.setTileAt(tiles.getTileLocation(D - 1, E), assets.tile`FlowerDust`)
+            tiles.setTileAt(tiles.getTileLocation(D, E + 1), assets.tile`FlowerDust`)
+            tiles.setTileAt(tiles.getTileLocation(D, E - 1), assets.tile`FlowerDust`)
+        } else {
+            tiles.setTileAt(tiles.getTileLocation(D, E), assets.tile`Flower2`)
+        }
     }
     tileUtil.setWalls(assets.tile`Stone`, true)
+    tileUtil.setWalls(assets.tile`Diamond`, true)
     tileUtil.replaceAllTiles(assets.tile`transparency16`, assets.tile`Grass`)
     if (D < 10 && E > 10) {
         Seed = parseFloat("0" + D + E + F + G)
@@ -501,7 +521,6 @@ function GenerateWorld (Chests: number, Twoplayer: number, Seed: number) {
     UIFrame.setPosition(124, 140)
     UIFrame.sx = 10
     scene.setBackgroundColor(9)
-    tiles.setCurrentTilemap(tilemap`Wrld`)
     Plr.scale = 1
     Plr.setPosition(122, 88)
     scene.cameraFollowSprite(Plr)
@@ -509,6 +528,12 @@ function GenerateWorld (Chests: number, Twoplayer: number, Seed: number) {
     C = 1
     Main_menu.close()
     A = 0
+    if (Gamemode == 0) {
+        info.setLife(10)
+        Hunger(10)
+    } else {
+        info.setLife(9999999)
+    }
     UIFrame.setFlag(SpriteFlag.GhostThroughWalls, true)
     UIFrame.setFlag(SpriteFlag.GhostThroughSprites, true)
     Inv1.setFlag(SpriteFlag.GhostThroughWalls, true)
@@ -526,12 +551,6 @@ function GenerateWorld (Chests: number, Twoplayer: number, Seed: number) {
     Inv1.setStayInScreen(true)
     Inv2.setStayInScreen(true)
     Inv3.setStayInScreen(true)
-    if (Gamemode == 0) {
-        info.setLife(10)
-        Hunger(10)
-    } else {
-        info.setLife(9999999)
-    }
     Plr.sayText("Seed: " + Seed, 2500, false)
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
